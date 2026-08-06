@@ -22,7 +22,7 @@ export default function AboutHero() {
 					scale with your ambitions.
 				</p>
 				<div className={styles.aboutHeroLogoBox}>
-					<Image src="/soramap.svg" alt="Company Logo" width={100} height={100} style={{ objectFit: "contain" }} />
+					<Image src="/soramapbg.png" alt="Company Logo" width={100} height={100} style={{ objectFit: "contain" }} />
 				</div>
 			</RevealSection>
 		</section>

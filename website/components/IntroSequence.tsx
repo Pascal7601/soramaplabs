@@ -61,7 +61,7 @@ export default function IntroSequence() {
     <div ref={rootRef} className="intro-root">
       <div ref={loaderRef} className="loader">
         <div ref={markRef} className="mark">
-			<Image src="/soramap.svg" width={300} height={300} alt="" className="loader-mark-image" />
+			<Image src="/soramapbg.png" width={300} height={300} alt="" className="loader-mark-image" />
 		</div>
       </div>
 
