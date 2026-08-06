@@ -59,7 +59,7 @@ export default function ServiceCategorySection({ category }: { category: Categor
 
                 <div className={styles["accordion-collapse"]}>
                   <div className={styles["accordion-collapse-inner"]}>
-                    <p>{item.description}</p>
+                    <p className={styles["accordion-description"]}>{item.description}</p>
                   </div>
                 </div>
               </div>

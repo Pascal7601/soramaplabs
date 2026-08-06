@@ -58,7 +58,7 @@ export default function Navbar() {
 
       <div className={`navbar-overlay ${isOpen ? "is-open" : ""}`}>
         <div className="navbar-overlay-top">
-          <Image src="/soramap.svg" width={36} height={36} className="fill-black" alt="Soramap" />
+          <Image src="/soramapbg.png" width={36} height={36} className="fill-black" alt="Soramap" />
           <a href="/contact" className="navbar-cta">
             Start a project ↗
           </a>
