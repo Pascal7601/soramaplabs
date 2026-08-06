@@ -5,7 +5,13 @@ import Image from "next/image";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import Link from "next/link";
 
-const LINKS = ["Work", "Services", "About"];
+const LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,12 +45,10 @@ export default function Navbar() {
           <a href="/about">Our Company</a>
           <a href="/services">Our Services</a>
           <a href="/work">Our Work</a>
+          <a href="/contact">Contact us</a>
         </nav>
 
         <div className="navbar-bar-right">
-          <a href="/contact" className="navbar-contact">
-            Contact Us
-          </a>
           <button
             className="navbar-toggle"
             onClick={() => setIsOpen(true)}
@@ -72,14 +76,10 @@ export default function Navbar() {
         </div>
 
         <nav className="navbar-links">
-          {LINKS.map((label) => (
-            <a
-              key={label}
-              href={`/${label.toLowerCase()}`}
-              onClick={() => setIsOpen(false)}
-            >
-              {label}
-            </a>
+          {LINKS.map(({ label, href }) => (
+              <a key={label} href={href} onClick={() => setIsOpen(false)}>
+                {label}
+              </a>
           ))}
         </nav>
 
