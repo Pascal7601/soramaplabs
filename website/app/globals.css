@@ -214,7 +214,7 @@ body {
 .navbar-overlay {
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 1001;
   background: var(--color-paper);
   color: var(--color-ink);
   display: flex;
@@ -301,9 +301,7 @@ body {
 }
 
 .navbar-bar-right {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  margin-left: auto;
 }
 
 .navbar-toggle {
@@ -330,6 +328,19 @@ body {
 .navbar-links a:nth-child(1) { transition-delay: 0.45s; }
 .navbar-links a:nth-child(2) { transition-delay: 0.69s; }
 .navbar-links a:nth-child(3) { transition-delay: 0.81s; }
+.navbar-links a:nth-child(4) { transition-delay: 0.93s; }
+.navbar-links a:nth-child(5) { transition-delay: 1.05s; }
+
+
+@media (max-width: 868px) {
+  .navbar-links-inline,
+  .navbar-contact {
+    display: none;
+  }
+  .navbar-bar-right {
+    gap: 1rem;
+  }
+}
 
 /* ==========Services Section ========== */
 .services {
