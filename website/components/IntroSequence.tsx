@@ -38,7 +38,7 @@ export default function IntroSequence() {
 
       master.to(
         loaderRef.current,
-        { clipPath: "circle(0% at 50% 50%)", duration: 0.7, ease: "power4.inOut" },
+        { clipPath: "circle(0% at 50% 50%)", duration: 0.5, ease: "power4.inOut" },
         "-=0.4"
       );
       master

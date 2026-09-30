@@ -40,8 +40,17 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className={`navbar-bar ${theme === "light" ? "on-light" : ""}`}>
+        <div className="navbar-logo">
+          <Link href="/" className="cursor-pointer">
+            <Image
+              src={theme === "light" ? "/soramap-dark.png" : "/soramapbg.png"}
+              width={90}
+              height={90}
+              alt="Soramap"
+            />
+          </Link>
+        </div>
         <nav className="navbar-links-inline">
-          <Link href="/">Home</Link>
           <a href="/about">Our Company</a>
           <a href="/services">Our Services</a>
           <a href="/work">Our Work</a>
@@ -62,9 +71,9 @@ export default function Navbar() {
 
       <div className={`navbar-overlay ${isOpen ? "is-open" : ""}`}>
         <div className="navbar-overlay-top">
-          <Image src="/soramapbg.png" width={36} height={36} className="fill-black" alt="Soramap" />
-          <a href="/contact" className="navbar-cta">
-            Start a project ↗
+          <Image src="/soramap-dark.png" width={90} height={90} className="fill-black" alt="Soramap" />
+          <a href="/contact" className="navbar-cta border-b-2 rounded-2">
+            Talk To Us ↗
           </a>
           <button
             className="navbar-close"
