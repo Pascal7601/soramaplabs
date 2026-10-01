@@ -91,7 +91,7 @@ body {
   color: var(--title-light);
   line-height: 1.05;
   letter-spacing: -0.01em;
-  margin: 0 0 1.75rem;
+  margin-top: 100px;
 }
 
 .word-wrap {
@@ -170,6 +170,7 @@ body {
     grid-template-columns: 1fr;
     margin-top: 2rem;
   }
+
   .hero-image-wrapper {
     width: 100%;
     height: auto;
@@ -210,6 +211,15 @@ body {
   height: 2px;
   background: var(--color-paper);
 }
+
+.navbar-logo {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+
+
 
 .navbar-overlay {
   position: fixed;
@@ -300,9 +310,7 @@ body {
   font-weight: 500;
 }
 
-.navbar-bar-right {
-  margin-left: auto;
-}
+
 
 .navbar-toggle {
   display: flex;
@@ -333,13 +341,15 @@ body {
 
 
 @media (max-width: 868px) {
+  .navbar-bar {
+    padding: 1rem 1.5rem;
+    margin-bottom: 30px;
+  }
   .navbar-links-inline,
   .navbar-contact {
     display: none;
   }
-  .navbar-bar-right {
-    gap: 1rem;
-  }
+  
 }
 
 /* ==========Services Section ========== */
@@ -535,6 +545,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero-headline {
+    margin-top: 80px;
+  }
   .about-layout {
     grid-template-columns: 1fr;
   }
