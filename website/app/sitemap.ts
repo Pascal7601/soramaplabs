@@ -1,13 +1,34 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://soramaplabs.com";
+
+  const lastUpdated = new Date("2026-10-01");
+
   return [
     {
-      url: "https://soramaplabs.com",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 1,
+      url: baseUrl,
+      lastModified: lastUpdated,
+      changeFrequency: "monthly",
+      priority: 1.0,
     },
-    // Add other routes here later (e.g., /about, /services)
+    {
+      url: `${baseUrl}/about`,
+      lastModified: lastUpdated,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified: lastUpdated,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: lastUpdated,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
   ];
 }
