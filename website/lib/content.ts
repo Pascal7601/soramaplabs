@@ -288,7 +288,7 @@ export const MODULES: ProductModule[] = [
   },
   {
     id: "crm",
-    status: "coming-soon",
+    status: "live",
     number: "05",
     name: "CRM",
     tabLabel: "CRM",
@@ -315,7 +315,7 @@ export const MODULES: ProductModule[] = [
   },
   {
     id: "pos",
-    status: "coming-soon",
+    status: "live",
     number: "06",
     name: "Point of Sale (POS)",
     tabLabel: "POS",
@@ -378,7 +378,7 @@ export const PRICING: PricingTier[] = [
   },
   {
     name: "Annual Licence",
-    price: "KES 400k – 750k",
+    price: "KES 200k – 400k",
     period: "/year",
     audience: "Mid-sized organisations & NGOs",
     includes: [
@@ -391,7 +391,7 @@ export const PRICING: PricingTier[] = [
 
 /** Shown under the pricing cards. */
 export const PRICING_NOTE =
-  "Prices cover the ready-made modules. Custom software development and cybersecurity engagements are quoted per project. CRM and POS pricing will be announced at launch.";
+  "Prices cover the ready-made modules. Custom software development and cybersecurity engagements are quoted per project.";
 
 /* ------------------------------------------------------------------ */
 /* Why Soramap (value props, mirrors Enerpize's 4-up benefits grid)    */
@@ -427,7 +427,7 @@ export const VALUE_PROPS = [
 export const FAQS = [
   {
     q: "What is Soramap?",
-    a: "A software and cybersecurity company. We build custom software, test and secure systems, and offer ready-made business modules for HR & payroll, procurement, inventory and imprest (activity advances), with CRM and POS coming soon.",
+    a: "A software and cybersecurity company. We build custom software, test and secure systems, and offer ready-made business modules for HR & payroll, procurement, inventory and imprest (activity advances).",
   },
   {
     q: "Can you build custom software for us?",
@@ -439,7 +439,7 @@ export const FAQS = [
   },
   {
     q: "Are CRM and POS available?",
-    a: "Not yet. Both are in our plans and will connect to the existing modules. Get in touch if you want to be among the first to try them.",
+    a: "Yes, both our CRM and POS modules are fully live and available. They integrate seamlessly with our existing business modules. Get in touch with us to get started or schedule a demo.",
   },
   {
     q: "Can I start with just one module?",

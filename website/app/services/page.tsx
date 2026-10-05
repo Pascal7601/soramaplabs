@@ -8,7 +8,7 @@ import { CATEGORIES } from "./data";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Custom software development, cybersecurity, and ready-made modules for HR & payroll, procurement, inventory and imprest. CRM and POS coming soon.",
+    "Custom software development, cybersecurity, and ready-made modules for HR & payroll, procurement, inventory and imprest.We also offer CRM and POS solutions.",
 };
 
 export default function ServicesPage() {
