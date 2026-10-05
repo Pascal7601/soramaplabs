@@ -26,6 +26,31 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  keywords: [
+    "Soramap",
+    "custom software development Kenya",
+    "cybersecurity firm",
+    "HR and payroll software",
+    "business management modules",
+    "CRM",
+    "POS",
+  ],
+
+  // Open Graph (For formatting links on WhatsApp, LinkedIn, X, etc.)
+  openGraph: {
+    title: `${SITE.name} | Software & Cybersecurity`,
+    description: SITE.description,
+    url: "https://soramaplabs.com",
+    siteName: SITE.name,
+    locale: "en_KE", // Tells search engines you are based in Kenya
+    type: "website",
+  },
+
+  // Search Engine Crawling Directions
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
