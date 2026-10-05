@@ -1,110 +1,95 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import RevealSection from "@/components/RevealSection";
+import { MODULES } from "@/lib/content";
 
-const SERVICES = [
-  {
-    title: "Technology",
-    description:
-      "We build cutting-edge mobile and web applications, pushing past conventional boundaries to solve real problems with real impact.",
-    items: [
-      "Mobile App Development",
-      "Web Development",
-      "AI & Innovation",
-      "Backend & Infrastructure",
-      "Emerging Technology",
-    ],
-    image: "/services/technology.jpg",
-  },
-  {
-    title: "Experience",
-    description:
-      "Our product designers and strategists collaborate closely to deliver work that's grounded in real user insight, not guesswork.",
-    items: ["Product Systems", "User Research", "UX Design", "Visual Design"],
-    image: "/services/experience.jpg",
-  },
-  {
-    title: "Strategy",
-    description:
-      "We partner with clients on strategy from day one — market positioning, growth potential, and technical roadmaps that hold up.",
-    items: [
-      "Digital Transformation",
-      "Product Vision",
-      "AI Strategy",
-      "Technical Audits",
-    ],
-    image: "/services/strategy.jpg",
-  },
-  {
-    title: "Growth",
-    description:
-      "We drive measurable growth across the full funnel by combining creative, data, and channel expertise in-house.",
-    items: ["Channel Management", "Data & Analytics", "Performance Marketing"],
-    image: "/services/growth.jpg",
-  },
-];
-
+/**
+ * HOME PAGE — PRODUCTS (MODULES) SECTION
+ *
+ * Left: accordion list of modules (hover/tap to open).
+ * Right: sticky preview panel showing the active module's highlights.
+ *
+ * Content comes from MODULES in lib/content.ts. Modules with
+ * status "coming-soon" get a badge automatically. The old version pointed
+ * at /services/*.jpg images that do not exist in /public (broken images),
+ * so the right-hand side is now a themed panel. If you add real
+ * screenshots later, add an `image` field to ProductModule and render it
+ * in the panel.
+ */
 export default function ServicesSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const active = MODULES[activeIndex];
 
   return (
     <section id="services" data-nav-theme="light" className="services">
       <RevealSection className="services-intro">
-        <p className="eyebrow">What we do</p>
+        <p className="kicker">Our Products</p>
         <h2 className="section-heading">
-          Elegant solutions built on proven methodologies.
+          Ready-made business modules that work as one.
         </h2>
       </RevealSection>
 
       <div className="services-layout">
         <div className="services-list">
-          {SERVICES.map((service, i) => (
+          {MODULES.map((module, i) => (
             <div
-              key={service.title}
+              key={module.id}
               className={`service-row ${i === activeIndex ? "is-active" : ""}`}
               onMouseEnter={() => setActiveIndex(i)}
+              onClick={() => setActiveIndex(i)}
             >
               <div className="service-row-header">
-                <span className="service-number">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3>{service.title}</h3>
+                <span className="service-number">{module.number}</span>
+                <h3>{module.name}</h3>
+                {module.status === "coming-soon" && (
+                  <span className="badge">Coming soon</span>
+                )}
                 <span className="service-arrow">↗</span>
               </div>
 
               <div className="service-collapse">
                 <div className="service-collapse-inner">
-                  <p>{service.description}</p>
-                  <ul>
-                    {service.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+                  <p>{module.summary}</p>
+                  <Link
+                    href={`/services#${module.id}`}
+                    className="service-learn-more"
+                  >
+                    Learn more ↗
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="services-image">
+        <div className="services-image module-panel">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="services-image-inner"
+              key={active.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="services-image-inner module-panel-inner"
             >
-              <Image
-                src={SERVICES[activeIndex].image}
-                alt={SERVICES[activeIndex].title}
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              <span className="module-panel-number">{active.number}</span>
+              <div>
+                <h3 className="module-panel-title">
+                  {active.name}
+                  {active.status === "coming-soon" && (
+                    <span className="badge badge-light">Coming soon</span>
+                  )}
+                </h3>
+                <p className="module-panel-tagline">{active.tagline}</p>
+                <ul className="module-panel-list">
+                  {active.highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
