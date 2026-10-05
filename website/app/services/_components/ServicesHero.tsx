@@ -1,18 +1,20 @@
+import Link from "next/link";
 import styles from "../services.module.css";
 import RevealSection from "@/components/RevealSection";
+import { PRIMARY_CTA } from "@/lib/site-config";
 
 export default function ServicesHero() {
   return (
-    <section data-nav-theme="dark" className={styles["services-hero"]}>
+    <section data-nav-theme="light" className={styles["services-hero"]}>
       <RevealSection className={styles["services-hero-layout"]}>
-        <h1>Your Partner for strategy, Engineering & AI Adoption</h1>
+        <h1>Software development, cybersecurity and business modules</h1>
         <p>
-          From boardroom ambition to bottom-line results. We deliver AI where
-          it drives real value.
+          We build and secure software for your organisation, and offer
+          ready-made modules you can start using today.
         </p>
-        <a href="/contact" className={styles["services-hero-cta"]}>
-          Work with us ↗
-        </a>
+        <Link href={PRIMARY_CTA.href} className={styles["services-hero-cta"]}>
+          {PRIMARY_CTA.label} ↗
+        </Link>
       </RevealSection>
     </section>
   );

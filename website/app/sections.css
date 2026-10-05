@@ -1,0 +1,664 @@
+/* =====================================================================
+   sections.css — styles for the sections added in the module/ERP update.
+
+   Imported in app/layout.tsx AFTER globals.css, so it can safely extend or
+   override it. Uses the same tokens as globals.css:
+     --color-ink   #0e0f11   (near-black)
+     --color-paper #ece8e1   (warm off-white)
+     --color-mist  #e2e2e2
+   Fonts: --font-display (Archivo) for headings.
+
+   Contents
+     1. Shared bits (.kicker, .section-heading)
+     2. Hero additions
+     3. Home modules section additions
+     4. Value props (dark)
+     5. Pricing
+     6. FAQ
+     7. /services highlights panel
+     8. Contact page
+     9. Footer tweak
+   ===================================================================== */
+
+:root {
+  /* Hairline for use on LIGHT backgrounds (globals' --color-line is for dark) */
+  --line-on-light: rgba(14, 15, 17, 0.18);
+  --muted-on-light: rgba(14, 15, 17, 0.68);
+  --muted-on-dark: rgba(236, 232, 225, 0.7);
+}
+
+/* ---------- 1. Shared ---------- */
+
+/* The original `.eyebrow` starts at opacity:0 for the hero animation and is
+   paper-coloured, so on a light section it was invisible. `.kicker` is the
+   always-visible label used above section headings. */
+.kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-on-light);
+  margin: 0 0 1.25rem;
+}
+.kicker-light {
+  color: var(--muted-on-dark);
+}
+
+.section-heading {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ---------- 2. Hero additions ---------- */
+
+/* Headline is now split into words (so the GSAP word reveal works). The
+   mask needs a little bottom room or descenders (g, p, y) get clipped. */
+.hero-headline .word-wrap {
+  padding-bottom: 0.1em;
+}
+.hero-line {
+  display: block;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(16px);
+}
+/* `.hero-cta` has its own opacity:0 in globals.css; the wrapper animates
+   instead, so reset it here. */
+.hero-buttons .hero-cta {
+  opacity: 1;
+  transform: none;
+}
+.hero-cta-solid {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-paper);
+}
+.hero-cta-solid:hover {
+  background: transparent;
+  color: var(--color-paper);
+  border-color: var(--color-paper);
+}
+.hero-cta-ghost:hover {
+  border-color: var(--color-paper);
+}
+
+.hero-modules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hero-modules li {
+  border-top: 1px solid var(--color-line);
+}
+.hero-modules li:last-child {
+  border-bottom: 1px solid var(--color-line);
+}
+.hero-modules a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  color: var(--color-paper);
+  text-decoration: none;
+  transition: padding-left 0.25s ease;
+}
+.hero-modules a:hover {
+  padding-left: 0.5rem;
+}
+.hero-module-number {
+  font-size: 0.8rem;
+  color: var(--muted-on-dark);
+}
+.hero-module-name {
+  flex: 1;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.2rem;
+}
+
+/* ---------- 3. Home modules section additions ---------- */
+
+.service-learn-more {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Right-hand preview panel (replaces the missing photos) */
+.module-panel {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.module-panel-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+.module-panel-number {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(4rem, 9vw, 7rem);
+  line-height: 1;
+  color: rgba(236, 232, 225, 0.12);
+}
+.module-panel-title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  margin: 0 0 0.5rem;
+}
+.module-panel-tagline {
+  color: var(--muted-on-dark);
+  margin: 0 0 1.5rem;
+}
+.module-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.module-panel-list li {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-line);
+  font-size: 0.95rem;
+}
+
+/* ---------- 4. Value props (dark) ---------- */
+
+.value-props {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.6rem, 6vw, 5rem);
+}
+.value-props-intro {
+  max-width: 44rem;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+  text-align: center;
+}
+.value-props-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.value-prop {
+  border-top: 1px solid var(--color-line);
+  padding-top: 1.5rem;
+}
+.value-prop-number {
+  font-size: 0.8rem;
+  color: var(--muted-on-dark);
+}
+.value-prop h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 0.75rem 0;
+}
+.value-prop p {
+  color: var(--muted-on-dark);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .value-props-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .value-props-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 5. Pricing ---------- */
+
+.pricing {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.6rem, 6vw, 5rem);
+}
+.pricing-intro {
+  max-width: 44rem;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+  text-align: center;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 76rem;
+  margin: 0 auto;
+}
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line-on-light);
+  border-radius: 1rem;
+  padding: 1.75rem;
+}
+.pricing-card.is-featured {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+.pricing-card h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 0;
+}
+.pricing-audience {
+  margin: 0.25rem 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--muted-on-light);
+}
+.is-featured .pricing-audience {
+  color: var(--muted-on-dark);
+}
+.pricing-price {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.7rem;
+  margin: 0 0 1.5rem;
+}
+.pricing-price span {
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-left: 0.25rem;
+}
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  flex: 1;
+}
+.pricing-card li::before {
+  content: "✓";
+  margin-right: 0.6rem;
+}
+.pricing-cta {
+  text-align: center;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.8rem 1.4rem;
+  font-size: 0.92rem;
+  border: 1px solid currentColor;
+  color: inherit;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+.pricing-card:not(.is-featured) .pricing-cta:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+.is-featured .pricing-cta {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-color: var(--color-paper);
+}
+
+@media (max-width: 1100px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 6. FAQ ---------- */
+
+.faq {
+  background: var(--color-mist);
+  color: var(--color-ink);
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.6rem, 6vw, 5rem);
+}
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.faq-row {
+  border-top: 1px solid var(--line-on-light);
+}
+.faq-row:last-child {
+  border-bottom: 1px solid var(--line-on-light);
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 1.25rem 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+}
+.faq-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+.faq-row.is-open .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+.faq-row.is-open .faq-collapse {
+  grid-template-rows: 1fr;
+}
+.faq-collapse-inner {
+  overflow: hidden;
+}
+.faq-collapse-inner p {
+  margin: 0 0 1.25rem;
+  max-width: 38rem;
+  line-height: 1.65;
+  color: var(--muted-on-light);
+}
+
+@media (max-width: 860px) {
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 7. /services highlights panel ---------- */
+
+/* Reuses services.module.css `.category-image` (4:3, rounded) but swaps the
+   photo for a dark panel. */
+.category-highlights {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.category-highlights-number {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: rgba(236, 232, 225, 0.12);
+}
+.category-highlights-tagline {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+}
+.category-highlights ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--muted-on-dark);
+}
+.category-highlights li {
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--color-line);
+}
+
+/* ---------- 8. Contact page ---------- */
+
+.contact {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  padding: clamp(8rem, 14vw, 10rem) clamp(1.6rem, 6vw, 5rem)
+    clamp(4rem, 8vw, 6rem);
+}
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  max-width: 72rem;
+  margin: 0 auto;
+  align-items: start;
+}
+.contact-lead {
+  margin: 1.5rem 0;
+  line-height: 1.65;
+  color: var(--muted-on-light);
+  max-width: 30rem;
+}
+.contact-email a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.contact-form label,
+.contact-form legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted-on-light);
+}
+.contact-form input:not([type="checkbox"]),
+.contact-form select,
+.contact-form textarea {
+  font: inherit;
+  color: var(--color-ink);
+  background: transparent;
+  border: 1px solid var(--line-on-light);
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 1px;
+}
+.contact-form fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.contact-checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+}
+.contact-form .contact-check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-ink);
+  font-size: 0.92rem;
+}
+.contact-form .cta-band-button {
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+  font: inherit;
+  font-size: 0.95rem;
+}
+.contact-note {
+  font-size: 0.9rem;
+  color: var(--muted-on-light);
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-checks {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 9. Footer tweak ---------- */
+
+/* globals.css lays the footer out in 5 columns; we now have 4. */
+.footer-columns {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 860px) {
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================================================
+   10. Services / offerings / coming-soon additions
+   ===================================================================== */
+
+/* "Coming soon" pill — used next to module names */
+.badge {
+  display: inline-block;
+  margin-left: 0.75rem;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: var(--font-body), Arial, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+.service-row-header .badge {
+  margin-left: 0;
+}
+.badge-light {
+  color: var(--color-paper);
+}
+
+/* "What we do" cards on the home page */
+.offerings {
+  background: var(--color-mist);
+  color: var(--color-ink);
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.6rem, 6vw, 5rem);
+}
+.offerings-intro {
+  max-width: 44rem;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+  text-align: center;
+}
+.offerings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+.offering-card {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: 1rem 1rem 6rem 1rem;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+}
+.offering-number {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: rgba(236, 232, 225, 0.12);
+}
+.offering-card h3 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  margin: 1.5rem 0 0.5rem;
+}
+.offering-tagline {
+  color: var(--muted-on-dark);
+  margin: 0 0 1rem;
+}
+.offering-summary {
+  line-height: 1.65;
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem;
+}
+.offering-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  flex: 1;
+}
+.offering-card li {
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--color-line);
+  font-size: 0.92rem;
+}
+.offering-link {
+  color: var(--color-paper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 0.95rem;
+}
+@media (max-width: 860px) {
+  .offerings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Note under the pricing cards */
+.pricing-note {
+  max-width: 44rem;
+  margin: 2rem auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted-on-light);
+}
+
+/* /services tabs: now 8 entries, so let them scroll instead of squashing.
+   (services.module.css class names are hashed, hence the attribute match.) */
+nav[class*="service-tabs"] {
+  overflow-x: auto;
+}
+nav[class*="service-tabs"] > button {
+  flex: 1 0 auto;
+  white-space: nowrap;
+}
+.category-section h2 .badge {
+  font-size: 0.65rem;
+}
+
+/* Value props now has 5 items; let the grid wrap by available width
+   instead of a fixed 4 columns. */
+.value-props-grid {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}

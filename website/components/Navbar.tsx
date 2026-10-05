@@ -2,17 +2,20 @@
 
 import { useLayoutEffect, useState } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 import Link from "next/link";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import {
+  NAV_INLINE,
+  NAV_OVERLAY,
+  PRIMARY_CTA,
+  SITE,
+  SOCIALS,
+} from "@/lib/site-config";
 
-const LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/services" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" }
-];
-
+/**
+ * Navbar. Links, CTA and socials now come from lib/site-config.ts.
+ * Theme switching (light/dark) is driven by `data-nav-theme` on each section.
+ */
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -46,15 +49,16 @@ export default function Navbar() {
               src={theme === "light" ? "/soramap-dark.png" : "/soramapbg.png"}
               width={90}
               height={90}
-              alt="Soramap"
+              alt={SITE.name}
             />
           </Link>
         </div>
         <nav className="navbar-links-inline">
-          <a href="/about">Our Company</a>
-          <a href="/services">Our Services</a>
-          <a href="/work">Our Work</a>
-          <a href="/contact">Contact us</a>
+          {NAV_INLINE.map(({ label, href }) => (
+            <Link key={label} href={href}>
+              {label}
+            </Link>
+          ))}
         </nav>
 
         <div className="navbar-bar-right">
@@ -71,10 +75,20 @@ export default function Navbar() {
 
       <div className={`navbar-overlay ${isOpen ? "is-open" : ""}`}>
         <div className="navbar-overlay-top">
-          <Image src="/soramap-dark.png" width={90} height={90} className="fill-black" alt="Soramap" />
-          <a href="/contact" className="navbar-cta border-b-2 rounded-2">
-            Talk To Us ↗
-          </a>
+          <Image
+            src="/soramap-dark.png"
+            width={90}
+            height={90}
+            className="fill-black"
+            alt={SITE.name}
+          />
+          <Link
+            href={PRIMARY_CTA.href}
+            className="navbar-cta border-b-2 rounded-2"
+            onClick={() => setIsOpen(false)}
+          >
+            {PRIMARY_CTA.label} ↗
+          </Link>
           <button
             className="navbar-close"
             onClick={() => setIsOpen(false)}
@@ -85,22 +99,23 @@ export default function Navbar() {
         </div>
 
         <nav className="navbar-links">
-          {LINKS.map(({ label, href }) => (
-              <a key={label} href={href} onClick={() => setIsOpen(false)}>
-                {label}
-              </a>
+          {NAV_OVERLAY.map(({ label, href }) => (
+            <Link key={label} href={href} onClick={() => setIsOpen(false)}>
+              {label}
+            </Link>
           ))}
         </nav>
 
         <div className="navbar-overlay-bottom">
-          <span>© 2026 Soramap</span>
+          <span>
+            © {SITE.year} {SITE.name}
+          </span>
           <div className="navbar-socials">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer">
-              LinkedIn ↗
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer">
-              Twitter ↗
-            </a>
+            {SOCIALS.slice(0, 2).map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
+                {s.label} ↗
+              </a>
+            ))}
           </div>
         </div>
       </div>
